@@ -7,19 +7,24 @@
 
   <div class="form-horizontal form-group form-group-lg row">
     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-2">
-      {{input type="email" value=emailAddress class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
-      {{#if isValid}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+      {{input type="email" value=model.email class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
+      {{#if model.isValid}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-2">
-      {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=message}}
-      {{#if isMsgLongEnough}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+      {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=model.message}}
+      {{#if model.isMsgLongEnough}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4 col-md-3">
-      <button class="btn btn-primary btn-lg btn-block" disabled={{isNotDisabled}} {{action "sendMessage"}}>Send message</button>
+      <button class="btn btn-primary btn-lg btn-block" disabled={{isNotDisabled}} {{action "sendMessage" model}}>Send message</button>
     </div>
   </div>
   {{#if responseMessage}}
-    <div class="alert alert-success">{{responseMessage}}</div>
+    <div class="alert alert-success">
+      <h4>Thank you! your message is sent.</h4>
+      <p>To: {{model.email}}</p>
+      <p>Message: {{model.message}}</p>
+      <p>Reference ID: {{model.id}}</p>
+    </div>
   {{/if}}
   <br><br>
 </div>
